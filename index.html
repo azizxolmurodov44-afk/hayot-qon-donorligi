@@ -74,34 +74,43 @@ footer{border-top:1px solid var(--line);padding:40px 0 calc(40px + env(safe-area
 footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:var(--muted)}
 footer a:hover{color:var(--lime)}
 .contact{display:grid;gap:4px}
-.auth-screen{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;overflow:hidden;background:radial-gradient(circle at 18% 78%,rgba(34,197,94,.18),transparent 20%),radial-gradient(circle at 82% 16%,rgba(99,102,241,.12),transparent 24%),linear-gradient(145deg,#02050b 0%,#07120d 52%,#02050b 100%);backdrop-filter:blur(18px)}
-.auth-screen:before{content:'';position:absolute;inset:0;opacity:.7;background-image:radial-gradient(circle,#fff 0 1px,transparent 1.5px),radial-gradient(circle,#86efac 0 1px,transparent 1.5px);background-size:79px 79px,113px 113px;background-position:12px 18px,47px 61px;mask-image:linear-gradient(to bottom,#000,transparent 92%)}
+.auth-screen{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;overflow:hidden;background-color:#07111f;background-image:linear-gradient(rgba(38,198,142,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(38,198,142,.055) 1px,transparent 1px),radial-gradient(circle at 84% 18%,rgba(34,197,94,.12),transparent 18%),radial-gradient(circle at 72% 82%,rgba(34,197,94,.10),transparent 25%),linear-gradient(135deg,#081523 0%,#0a1921 56%,#081318 100%);background-size:24px 24px,24px 24px,100% 100%,100% 100%,100% 100%}
+.auth-screen:before{content:'';position:absolute;width:110px;height:110px;left:-28px;bottom:-18px;border-radius:50%;background:radial-gradient(circle at 38% 28%,#baffdc,#19bfa2 45%,#0b4d67 78%);box-shadow:0 0 35px rgba(80,255,197,.28)}
+.auth-screen:after{content:'';position:absolute;width:190px;height:190px;right:-12px;top:30px;border-radius:50%;background:radial-gradient(circle at 35% 28%,#9adf89,#41c087 58%,#1a8e74 82%);box-shadow:0 0 48px rgba(56,189,148,.14)}
 .auth-screen.hidden{display:none}
-.auth-card{position:relative;width:min(900px,100%);min-height:590px;display:grid;grid-template-columns:.82fr 1.18fr;background:rgba(8,15,11,.82);border:1px solid rgba(134,239,172,.16);border-radius:28px;padding:12px;box-shadow:0 32px 100px rgba(0,0,0,.62),0 0 80px rgba(34,197,94,.06);overflow:hidden;z-index:2}
+.auth-card{position:relative;width:min(1280px,calc(100% - 40px));min-height:620px;display:grid;grid-template-columns:1fr 1fr;background:transparent;border:0;border-radius:0;padding:0;box-shadow:none;overflow:visible;z-index:2}
 .auth-card:before{content:'';position:absolute;width:360px;height:360px;right:-180px;top:-220px;border-radius:50%;border:1px solid rgba(134,239,172,.12)}
-.auth-art{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:38px 34px;border-radius:20px;overflow:hidden;background:radial-gradient(circle at 48% 38%,rgba(134,239,172,.22) 0 4%,transparent 5%),radial-gradient(circle at 50% 42%,rgba(34,197,94,.16),transparent 25%),linear-gradient(160deg,rgba(20,49,34,.72),rgba(3,8,8,.92))}
+.auth-art{position:relative;display:flex;flex-direction:column;justify-content:center;padding:38px 34px;border-radius:0;overflow:visible;background:transparent}
 .auth-art:before,.auth-art:after{content:'';position:absolute;border:1px solid rgba(134,239,172,.24);border-radius:50%;left:50%;top:43%;transform:translate(-50%,-50%)}
 .auth-art:before{width:230px;height:230px}
 .auth-art:after{width:150px;height:150px}
-.auth-heart{position:relative;z-index:2;width:82px;height:82px;margin:0 auto 170px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#d9fbe3,#22c55e 58%,#15803d);color:#03120a;font-size:38px;box-shadow:0 0 50px rgba(34,197,94,.28),inset -10px -12px 18px rgba(21,128,61,.32)}
-.auth-heart{animation:heartBeat 2.4s ease-in-out infinite}
+.auth-heart{display:none}
 @keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.08);box-shadow:0 0 70px rgba(34,197,94,.38)}}
-.auth-art-copy{position:relative;z-index:2}
-.auth-art-copy span{color:var(--lime);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}
-.auth-art-copy p{max-width:240px;margin-top:8px;font-family:Newsreader,serif;font-size:30px;line-height:1.12}
-.auth-main{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:center;padding:28px 38px;background:linear-gradient(145deg,rgba(13,20,14,.6),rgba(5,8,5,.82))}
+.auth-art-copy{position:relative;z-index:2;margin-left:0;max-width:520px}
+.auth-art-copy span{display:block;color:#23c56d;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:800}
+.auth-art-copy h2{max-width:none;margin:0 0 18px;font-size:48px;line-height:1.08;letter-spacing:-.03em;color:#19c67b}
+.auth-art-copy p{max-width:520px;margin:0 0 28px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#23c56d;font-size:17px;line-height:1.5}
+.auth-features{display:grid;gap:12px;max-width:640px}
+.auth-feature{min-height:66px;display:flex;align-items:center;padding:0 22px;border:1px solid rgba(134,239,172,.12);border-radius:14px;background:rgba(10,25,31,.72);color:#edf6f1;font-size:17px;box-shadow:0 12px 28px rgba(0,0,0,.12)}
+.auth-feature i{width:24px;margin-right:12px;font-style:normal}
+.auth-main{position:relative;z-index:3;width:560px;min-height:556px;justify-self:end;display:flex;flex-direction:column;justify-content:center;padding:34px 48px;border:1px solid rgba(134,239,172,.13);border-radius:18px;background:rgba(8,18,28,.82);box-shadow:0 24px 80px rgba(0,0,0,.28);backdrop-filter:blur(10px)}
 .auth-brand{display:flex;margin-bottom:22px}
-.auth-card h2{text-align:left;max-width:none;font-size:36px;margin-bottom:10px}
+.auth-card h2{text-align:left;max-width:none;font-size:34px;margin-bottom:24px;color:#effaf4}
 .auth-subtitle{margin:-4px 0 18px;color:var(--muted);font-size:14px}
-.auth-tabs{display:grid;grid-template-columns:1fr 1fr;padding:4px;margin-bottom:18px;border:1px solid rgba(134,239,172,.11);border-radius:999px;background:rgba(5,8,5,.62)}
+.auth-tabs{display:none;grid-template-columns:1fr 1fr;padding:4px;margin-bottom:18px;border:1px solid rgba(134,239,172,.11);border-radius:999px;background:rgba(5,8,5,.62)}
 .auth-tab{border:0;border-radius:999px;background:none;color:var(--muted);padding:9px;font:700 14px Manrope,sans-serif;cursor:pointer;transition:.2s}
 .auth-tab.active{background:var(--green);color:#03120a}
-.auth-form{display:grid;grid-template-columns:1fr;gap:12px;padding:0;border:0}
+.auth-form{display:grid;grid-template-columns:1fr;gap:16px;padding:0;border:0}
 .auth-form .full{grid-column:auto}
-.auth-form label{gap:5px}
-.auth-form input{height:52px;border-radius:12px;transition:border-color .2s,box-shadow .2s}
+.auth-form label{gap:6px;color:#8f9daa;font-size:15px;font-weight:500}
+.auth-form input{height:54px;border:1px solid rgba(134,239,172,.10);border-radius:10px;background:rgba(4,10,18,.82);color:#edf6f1;transition:border-color .2s,box-shadow .2s}
+.password-wrap{position:relative}
+.password-wrap input{padding-right:56px}
+.password-toggle{position:absolute;right:14px;top:39px;border:0;background:none;color:#7c8993;cursor:pointer;font-size:16px}
 .auth-form input:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(34,197,94,.08)}
-.auth-form .btn{height:52px;margin-top:4px}
+.auth-form .btn{height:62px;margin-top:10px;border-radius:14px;background:#00c96b;font-size:20px}
+.auth-switch{margin-top:32px;text-align:center;color:#edf6f1;font-size:17px}
+.auth-switch button{border:0;background:none;color:#edf6f1;font:700 17px Manrope,sans-serif;cursor:pointer}
 .auth-status{min-height:20px;text-align:center;color:var(--err);font-size:13px}
 .site-hidden{display:none!important}
 .logout-button{display:none;background:none;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:8px 12px;font:700 12px Manrope,sans-serif;cursor:pointer}
@@ -123,7 +132,7 @@ footer a:hover{color:var(--lime)}
 @media(max-width:820px){
 .auth-card{width:min(520px,100%);min-height:0;grid-template-columns:1fr}
 .auth-art{display:none}
-.auth-main{padding:26px 20px}
+.auth-main{width:100%;min-height:520px;justify-self:center;padding:26px 20px}
 .auth-card h2{font-size:30px;text-align:center}
 .auth-brand{justify-content:center}
 .auth-subtitle{text-align:center}
@@ -145,33 +154,38 @@ section{padding:56px 0}}
 <div class="auth-screen" id="authScreen" role="dialog" aria-modal="true" aria-labelledby="authTitle">
   <div class="auth-card">
     <aside class="auth-art" aria-hidden="true">
-      <div class="auth-heart">+</div>
       <div class="auth-art-copy">
-        <span>Bir dona imkoniyat</span>
-        <p>Bir qaroringiz, uch hayotga umid.</p>
+        <h2>Bilim koinotiga xush kelibsiz</h2>
+        <p>Kod yoz. O‘rgan. Yulduz ol.</p>
+        <div class="auth-features">
+          <div class="auth-feature"><i>🎬</i>Har bir bosqichda video darslik</div>
+          <div class="auth-feature"><i>✅</i>Vazifa avtomatik tekshiriladi</div>
+          <div class="auth-feature"><i>🔥</i>Kunlik streak va ⭐ XP ballari</div>
+          <div class="auth-feature"><i>🏆</i>Tugatganingizga sertifikat</div>
+        </div>
       </div>
     </aside>
     <div class="auth-main">
-      <div class="auth-brand"><a class="brand" href="#top"><span class="mark">+</span>HAYOT</a></div>
-      <h2 id="authTitle">Hisob yaratish</h2>
-      <p class="auth-subtitle" id="authSubtitle">Hayot berish safarida birinchi qadamingiz</p>
+      <h2 id="authTitle">Xush kelibsiz! 👋</h2>
       <div class="auth-tabs" role="tablist">
         <button class="auth-tab active" id="signupTab" type="button" role="tab" aria-selected="true">Ro‘yxatdan o‘tish</button>
         <button class="auth-tab" id="loginTab" type="button" role="tab" aria-selected="false">Kirish</button>
       </div>
       <form class="auth-form" id="authForm" novalidate>
-        <label id="nameField">Ism familiya
-          <input name="accountName" type="text" autocomplete="name" placeholder="Masalan: Aziz Karimov">
+        <label id="nameField">Nick (login)
+          <input name="accountName" type="text" autocomplete="username" placeholder="admin">
         </label>
-        <label id="phoneField">Telefon raqam
+        <label id="phoneField" style="display:none">Telefon raqam
           <input name="accountPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" required>
         </label>
-        <label>Parol
-          <input name="accountPassword" type="password" autocomplete="new-password" minlength="6" placeholder="Kamida 6 ta belgi" required>
+        <label class="password-wrap">Parol
+          <input name="accountPassword" type="password" autocomplete="current-password" minlength="6" placeholder="••••••••" required>
+          <button class="password-toggle" id="passwordToggle" type="button" aria-label="Parolni ko‘rsatish">◉</button>
         </label>
-        <button class="btn" type="submit" id="authSubmit">Ro‘yxatdan o‘tish <span>→</span></button>
+        <button class="btn" type="submit" id="authSubmit">Kirish</button>
         <p class="auth-status" id="authStatus" role="status"></p>
       </form>
+      <p class="auth-switch">Hisobingiz yo‘qmi? <button id="openSignup" type="button">Ro‘yxatdan o‘ting</button></p>
     </div>
   </div>
 </div>
@@ -352,7 +366,7 @@ section{padding:56px 0}}
   var nameField=document.getElementById('nameField');
   var phoneField=document.getElementById('phoneField');
   var siteContent=document.getElementById('siteContent');
-  var authMode='signup';
+  var authMode='login';
 
   function normalizeName(value){return value.trim().replace(/\s+/g,' ').toLocaleLowerCase('uz')}
 
@@ -373,11 +387,12 @@ section{padding:56px 0}}
     loginTab.classList.toggle('active',!signup);
     signupTab.setAttribute('aria-selected',signup?'true':'false');
     loginTab.setAttribute('aria-selected',signup?'false':'true');
-    authTitle.textContent=signup?'Hisob yaratish':'Hisobga kirish';
-    authSubtitle.textContent=signup?'Hayot berish safarida birinchi qadamingiz':'Hisobingizga qaytish va xizmatlardan foydalanish';
+    authTitle.textContent=signup?'Hisob yaratish':'Xush kelibsiz! 👋';
+    if(authSubtitle)authSubtitle.textContent=signup?'Hayot berish safarida birinchi qadamingiz':'Hisobingizga qaytish va xizmatlardan foydalanish';
     authSubmit.textContent=signup?'Ro‘yxatdan o‘tish':'Kirish';
     nameField.style.display='grid';
-    nameField.querySelector('input').placeholder=signup?'Masalan: Aziz Karimov':'To‘liq ism va familiya';
+    nameField.childNodes[0].textContent=signup?'Ism familiya':'Nick (login)';
+    nameField.querySelector('input').placeholder=signup?'Masalan: Aziz Karimov':'admin';
     phoneField.style.display=signup?'grid':'none';
     authForm.elements.accountPhone.required=signup;
     authForm.elements.accountName.required=signup;
@@ -386,6 +401,17 @@ section{padding:56px 0}}
   }
   signupTab.addEventListener('click',function(){setMode('signup')});
   loginTab.addEventListener('click',function(){setMode('login')});
+  document.getElementById('openSignup').addEventListener('click',function(){
+    setMode(authMode==='login'?'signup':'login');
+    document.querySelector('.auth-switch').firstChild.textContent=authMode==='login'?'Hisobingiz yo‘qmi? ':'Hisobingiz bormi? ';
+    this.textContent=authMode==='login'?'Ro‘yxatdan o‘ting':'Kirish';
+  });
+  document.getElementById('passwordToggle').addEventListener('click',function(){
+    var input=authForm.elements.accountPassword;
+    var show=input.type==='password';
+    input.type=show?'text':'password';
+    this.textContent=show?'○':'◉';
+  });
 
   authForm.addEventListener('submit',function(e){
     e.preventDefault();
@@ -417,9 +443,10 @@ section{padding:56px 0}}
   document.getElementById('logoutButton').addEventListener('click',function(){
     sessionStorage.removeItem('hayot_session');
     authForm.reset();
-    setMode('signup');
+    setMode('login');
     showAuth();
   });
+  setMode('login');
   if(sessionStorage.getItem('hayot_session'))showSite();else showAuth();
 
   var adminModal=document.getElementById('adminModal');
