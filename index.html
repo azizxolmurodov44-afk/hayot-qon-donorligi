@@ -71,6 +71,23 @@ footer{border-top:1px solid var(--line);padding:40px 0 calc(40px + env(safe-area
 footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:var(--muted)}
 footer a:hover{color:var(--lime)}
 .contact{display:grid;gap:4px}
+.auth-screen{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:rgba(5,8,5,.96);backdrop-filter:blur(18px)}
+.auth-screen.hidden{display:none}
+.auth-card{width:min(420px,100%);background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+.auth-brand{display:flex;justify-content:center;margin-bottom:10px}
+.auth-card h2{text-align:center;max-width:none;font-size:28px;margin-bottom:18px}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;padding:4px;margin-bottom:18px;border:1px solid var(--line);border-radius:999px}
+.auth-tab{border:0;border-radius:999px;background:none;color:var(--muted);padding:9px;font:700 14px Manrope,sans-serif;cursor:pointer}
+.auth-tab.active{background:var(--green);color:#03120a}
+.auth-form{display:grid;grid-template-columns:1fr;gap:12px;padding:0;border:0}
+.auth-form .full{grid-column:auto}
+.auth-form label{gap:5px}
+.auth-form input{height:48px}
+.auth-status{min-height:20px;text-align:center;color:var(--err);font-size:13px}
+.site-hidden{display:none!important}
+.logout-button{display:none;background:none;border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:8px 12px;font:700 12px Manrope,sans-serif;cursor:pointer}
+.authenticated .logout-button{display:inline-flex}
+.authenticated .nav-button{display:none}
 @media(max-width:820px){
 .menu{display:block}
 .links{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 20px 16px}
@@ -86,6 +103,30 @@ section{padding:56px 0}}
 </style>
 </head>
 <body>
+<div class="auth-screen" id="authScreen" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="auth-card">
+    <div class="auth-brand"><a class="brand" href="#top"><span class="mark">+</span>HAYOT</a></div>
+    <h2 id="authTitle">Hisob yaratish</h2>
+    <div class="auth-tabs" role="tablist">
+      <button class="auth-tab active" id="signupTab" type="button" role="tab" aria-selected="true">Ro‘yxatdan o‘tish</button>
+      <button class="auth-tab" id="loginTab" type="button" role="tab" aria-selected="false">Kirish</button>
+    </div>
+    <form class="auth-form" id="authForm" novalidate>
+      <label id="nameField">Ism familiya
+        <input name="accountName" type="text" autocomplete="name" placeholder="Masalan: Aziz Karimov">
+      </label>
+      <label>Telefon raqam
+        <input name="accountPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" required>
+      </label>
+      <label>Parol
+        <input name="accountPassword" type="password" autocomplete="new-password" minlength="6" placeholder="Kamida 6 ta belgi" required>
+      </label>
+      <button class="btn" type="submit" id="authSubmit">Ro‘yxatdan o‘tish</button>
+      <p class="auth-status" id="authStatus" role="status"></p>
+    </form>
+  </div>
+</div>
+<div id="siteContent" class="site-hidden">
 <header class="nav">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Bosh sahifa"><span class="mark">+</span>HAYOT</a>
@@ -96,6 +137,7 @@ section{padding:56px 0}}
       <a href="#contact">Aloqa</a>
     </nav>
     <a class="btn" href="#donate">Donor bo‘lish</a>
+    <button class="logout-button" id="logoutButton" type="button">Chiqish</button>
     <button class="menu" id="menu" aria-label="Menyuni ochish" aria-expanded="false" aria-controls="links">☰</button>
   </div>
 </header>
@@ -217,8 +259,82 @@ section{padding:56px 0}}
     </div>
   </div>
 </footer>
+</div>
 <script>
 (function(){
+  var authScreen=document.getElementById('authScreen');
+  var authForm=document.getElementById('authForm');
+  var authTitle=document.getElementById('authTitle');
+  var authStatus=document.getElementById('authStatus');
+  var authSubmit=document.getElementById('authSubmit');
+  var signupTab=document.getElementById('signupTab');
+  var loginTab=document.getElementById('loginTab');
+  var nameField=document.getElementById('nameField');
+  var siteContent=document.getElementById('siteContent');
+  var authMode='signup';
+
+  function showSite(){
+    authScreen.classList.add('hidden');
+    siteContent.classList.remove('site-hidden');
+    document.body.classList.add('authenticated');
+  }
+  function showAuth(){
+    authScreen.classList.remove('hidden');
+    siteContent.classList.add('site-hidden');
+    document.body.classList.remove('authenticated');
+  }
+  function setMode(mode){
+    authMode=mode;
+    var signup=mode==='signup';
+    signupTab.classList.toggle('active',signup);
+    loginTab.classList.toggle('active',!signup);
+    signupTab.setAttribute('aria-selected',signup?'true':'false');
+    loginTab.setAttribute('aria-selected',signup?'false':'true');
+    authTitle.textContent=signup?'Hisob yaratish':'Hisobga kirish';
+    authSubmit.textContent=signup?'Ro‘yxatdan o‘tish':'Kirish';
+    nameField.style.display=signup?'grid':'none';
+    authForm.elements.accountName.required=signup;
+    authForm.elements.accountPassword.autocomplete=signup?'new-password':'current-password';
+    authStatus.textContent='';
+  }
+  signupTab.addEventListener('click',function(){setMode('signup')});
+  loginTab.addEventListener('click',function(){setMode('login')});
+
+  authForm.addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=authForm.elements;
+    var phone=(f.accountPhone.value.replace(/\D/g,'')).slice(-12);
+    var password=f.accountPassword.value;
+    var name=f.accountName.value.trim();
+    if(phone.length<9){authStatus.textContent='Telefon raqamni to‘liq kiriting.';f.accountPhone.focus();return}
+    if(password.length<6){authStatus.textContent='Parol kamida 6 ta belgidan iborat bo‘lsin.';f.accountPassword.focus();return}
+    if(authMode==='signup'&&name.split(/\s+/).length<2){authStatus.textContent='Ism va familiyangizni to‘liq kiriting.';f.accountName.focus();return}
+    if(authMode==='signup'){
+      var users=JSON.parse(localStorage.getItem('hayot_users')||'[]');
+      if(users.some(function(u){return u.phone===phone})) {
+        authStatus.textContent='Bu telefon raqam bilan hisob mavjud. “Kirish”ni tanlang.';
+        return;
+      }
+      users.push({name:name,phone:phone,password:password});
+      localStorage.setItem('hayot_users',JSON.stringify(users));
+      sessionStorage.setItem('hayot_session',JSON.stringify({name:name,phone:phone}));
+      showSite();
+    }else{
+      var accounts=JSON.parse(localStorage.getItem('hayot_users')||'[]');
+      var account=accounts.find(function(u){return u.phone===phone&&u.password===password});
+      if(!account){authStatus.textContent='Telefon raqam yoki parol noto‘g‘ri.';return}
+      sessionStorage.setItem('hayot_session',JSON.stringify({name:account.name,phone:account.phone}));
+      showSite();
+    }
+  });
+  document.getElementById('logoutButton').addEventListener('click',function(){
+    sessionStorage.removeItem('hayot_session');
+    authForm.reset();
+    setMode('signup');
+    showAuth();
+  });
+  if(sessionStorage.getItem('hayot_session'))showSite();else showAuth();
+
   var menu=document.getElementById('menu'),links=document.getElementById('links');
   menu.addEventListener('click',function(){
     var o=links.classList.toggle('open');
