@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Birlamchi qon quyish markazi — donor bo‘ling, hayotni saqlang." />
+    <title>Hayot — Qon donorlik markazi</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Newsreader:ital,wght@1,500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <a class="brand" href="#top" aria-label="Bosh sahifa">
+        <span class="brand-mark">+</span>
+        <span>HAYOT</span>
+      </a>
+      <nav class="nav-links" aria-label="Asosiy navigatsiya">
+        <a href="#about">Biz haqimizda</a>
+        <a href="#process">Qanday beradi</a>
+        <a href="#contact">Aloqa</a>
+      </nav>
+      <a class="nav-button" href="#donate">Donor bo‘lish <span>↗</span></a>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> Bir dona qon — bir hayot</p>
+          <h1>Bir necha daqiqada<br /><em>hayot</em> bag‘ishlang.</h1>
+          <p class="intro">Safingizga kelmasdan oldin shaxsingizni tekshirib, eng yaqin markazdan rejalashtiring.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#donate">Donor bo‘lish <span>→</span></a>
+            <a class="text-link" href="#process">Jarayonni ko‘ring</a>
+          </div>
+        </div>
+
+        <div class="blood-visual" aria-label="Qon quyish illyustratsiyasi">
+          <div class="pulse pulse-one"></div>
+          <div class="pulse pulse-two"></div>
+          <div class="blood-drop">
+            <div class="drop-shine"></div>
+            <span class="cross">+</span>
+          </div>
+          <div class="stat-card">
+            <strong>12 480+</strong>
+            <span>hayot tejaldi</span>
+          </div>
+          <div class="blood-type"><b>O</b><span>Tur</span></div>
+        </div>
+      </section>
+
+      <section class="impact" aria-label="Markaz statistikasi">
+        <div><strong>24/7</strong><span>Onlayn yozilish</span></div>
+        <div><strong>18+</strong><span>Hamkor shifoxona</span></div>
+        <div><strong>45 daq.</strong><span>O‘rtacha vaqt</span></div>
+        <div><strong>100%</strong><span>Xavfsiz jarayon</span></div>
+      </section>
+
+      <section class="about" id="about">
+        <p class="section-label">Biz haqimizda</p>
+        <div class="about-copy">
+          <h2>Har bir donor — hayot uchun ishonchli birlik.</h2>
+          <p>Biz qon donorligini xabardorlik, qulaylik va shifokor nazorati bilan boshqaramiz. Sizga eng yaqin markazni, mos vaqtni va qon guruhingiz bo‘yicha to‘liq ma’lumotni beramiz.</p>
+        </div>
+      </section>
+
+      <section class="process" id="process">
+        <div class="section-heading">
+          <p>Qon topshirish jarayoni</p>
+          <span>3 oddiy qadam</span>
+        </div>
+        <div class="steps">
+          <article>
+            <span class="step-number">01</span>
+            <div class="step-icon">✓</div>
+            <h3>Ro‘yxatdan o‘ting</h3>
+            <p>Shaxsiy ma’lumot va qulay vaqtni tanlang.</p>
+          </article>
+          <article>
+            <span class="step-number">02</span>
+            <div class="step-icon">+</div>
+            <h3>Sog‘lomlik tekshiruvi</h3>
+            <p>Shifokor qon bosimi, gemoglobin va umumiy holatni tekshiradi.</p>
+          </article>
+          <article>
+            <span class="step-number">03</span>
+            <div class="step-icon">♥</div>
+            <h3>Hayotni ulashing</h3>
+            <p>Qon topshirish jarayoni taxminan 10–15 daqiqa davom etadi.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="donate" id="donate">
+        <div class="donate-copy">
+          <p class="section-label">Bugun boshlang</p>
+          <h2>Qon donori bo‘lish uchun so‘rov qoldiring.</h2>
+        </div>
+        <form class="donor-form" id="donorForm">
+          <label>
+            Ism familiya
+            <input name="name" type="text" placeholder="Masalan: Aziz Karimov" required />
+          </label>
+          <label>
+            Telefon raqam
+            <input name="phone" type="tel" placeholder="+998 90 123 45 67" required />
+          </label>
+          <label>
+            Qon guruhi
+            <select name="bloodType" required>
+              <option value="">Tanlang</option>
+              <option>I (0)</option>
+              <option>II (A)</option>
+              <option>III (B)</option>
+              <option>IV (AB)</option>
+            </select>
+          </label>
+          <button type="submit">So‘rovni yuborish <span>→</span></button>
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer id="contact">
+      <div>
+        <a class="brand footer-brand" href="#top"><span class="brand-mark">+</span><span>HAYOT</span></a>
+        <p>Har bir donor — umid manbayi.</p>
+      </div>
+      <div class="footer-contact">
+        <p>Aloqa uchun</p>
+        <a href="tel:+998711234567">+998 71 123 45 67</a>
+        <a href="mailto:hello@hayot.uz">hello@hayot.uz</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
