@@ -74,25 +74,26 @@ footer{border-top:1px solid var(--line);padding:40px 0 calc(40px + env(safe-area
 footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:var(--muted)}
 footer a:hover{color:var(--lime)}
 .contact{display:grid;gap:4px}
-.auth-screen{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:radial-gradient(circle at 25% 25%,rgba(34,197,94,.12),transparent 22%),linear-gradient(135deg,rgba(5,8,5,.98),rgba(8,16,10,.98));backdrop-filter:blur(18px)}
+.auth-screen{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;overflow:hidden;background:radial-gradient(circle at 18% 78%,rgba(34,197,94,.18),transparent 20%),radial-gradient(circle at 82% 16%,rgba(99,102,241,.12),transparent 24%),linear-gradient(145deg,#02050b 0%,#07120d 52%,#02050b 100%);backdrop-filter:blur(18px)}
+.auth-screen:before{content:'';position:absolute;inset:0;opacity:.7;background-image:radial-gradient(circle,#fff 0 1px,transparent 1.5px),radial-gradient(circle,#86efac 0 1px,transparent 1.5px);background-size:79px 79px,113px 113px;background-position:12px 18px,47px 61px;mask-image:linear-gradient(to bottom,#000,transparent 92%)}
 .auth-screen.hidden{display:none}
-.auth-card{position:relative;width:min(900px,100%);min-height:590px;display:grid;grid-template-columns:.82fr 1.18fr;background:rgba(13,20,14,.82);border:1px solid rgba(134,239,172,.14);border-radius:28px;padding:12px;box-shadow:0 32px 100px rgba(0,0,0,.48);overflow:hidden}
+.auth-card{position:relative;width:min(900px,100%);min-height:590px;display:grid;grid-template-columns:.82fr 1.18fr;background:rgba(8,15,11,.82);border:1px solid rgba(134,239,172,.16);border-radius:28px;padding:12px;box-shadow:0 32px 100px rgba(0,0,0,.62),0 0 80px rgba(34,197,94,.06);overflow:hidden;z-index:2}
 .auth-card:before{content:'';position:absolute;width:360px;height:360px;right:-180px;top:-220px;border-radius:50%;border:1px solid rgba(134,239,172,.12)}
-.auth-art{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:38px 34px;border-radius:20px;overflow:hidden;background:linear-gradient(160deg,rgba(34,197,94,.15),rgba(5,8,5,.72)),radial-gradient(circle at 50% 38%,rgba(134,239,172,.22),transparent 28%)}
+.auth-art{position:relative;display:flex;flex-direction:column;justify-content:flex-end;padding:38px 34px;border-radius:20px;overflow:hidden;background:radial-gradient(circle at 48% 38%,rgba(134,239,172,.22) 0 4%,transparent 5%),radial-gradient(circle at 50% 42%,rgba(34,197,94,.16),transparent 25%),linear-gradient(160deg,rgba(20,49,34,.72),rgba(3,8,8,.92))}
 .auth-art:before,.auth-art:after{content:'';position:absolute;border:1px solid rgba(134,239,172,.24);border-radius:50%;left:50%;top:43%;transform:translate(-50%,-50%)}
 .auth-art:before{width:230px;height:230px}
 .auth-art:after{width:150px;height:150px}
-.auth-heart{position:relative;z-index:2;width:82px;height:82px;margin:0 auto 170px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:#03120a;font-size:38px;box-shadow:0 0 50px rgba(34,197,94,.28)}
+.auth-heart{position:relative;z-index:2;width:82px;height:82px;margin:0 auto 170px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#d9fbe3,#22c55e 58%,#15803d);color:#03120a;font-size:38px;box-shadow:0 0 50px rgba(34,197,94,.28),inset -10px -12px 18px rgba(21,128,61,.32)}
 .auth-heart{animation:heartBeat 2.4s ease-in-out infinite}
 @keyframes heartBeat{0%,100%{transform:scale(1)}50%{transform:scale(1.08);box-shadow:0 0 70px rgba(34,197,94,.38)}}
 .auth-art-copy{position:relative;z-index:2}
 .auth-art-copy span{color:var(--lime);font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}
 .auth-art-copy p{max-width:240px;margin-top:8px;font-family:Newsreader,serif;font-size:30px;line-height:1.12}
-.auth-main{display:flex;flex-direction:column;justify-content:center;padding:28px 38px}
+.auth-main{position:relative;z-index:3;display:flex;flex-direction:column;justify-content:center;padding:28px 38px;background:linear-gradient(145deg,rgba(13,20,14,.6),rgba(5,8,5,.82))}
 .auth-brand{display:flex;margin-bottom:22px}
 .auth-card h2{text-align:left;max-width:none;font-size:36px;margin-bottom:10px}
 .auth-subtitle{margin:-4px 0 18px;color:var(--muted);font-size:14px}
-.auth-tabs{display:grid;grid-template-columns:1fr 1fr;padding:4px;margin-bottom:18px;border:1px solid var(--line);border-radius:999px;background:rgba(5,8,5,.42)}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;padding:4px;margin-bottom:18px;border:1px solid rgba(134,239,172,.11);border-radius:999px;background:rgba(5,8,5,.62)}
 .auth-tab{border:0;border-radius:999px;background:none;color:var(--muted);padding:9px;font:700 14px Manrope,sans-serif;cursor:pointer;transition:.2s}
 .auth-tab.active{background:var(--green);color:#03120a}
 .auth-form{display:grid;grid-template-columns:1fr;gap:12px;padding:0;border:0}
@@ -144,7 +145,7 @@ section{padding:56px 0}}
 <div class="auth-screen" id="authScreen" role="dialog" aria-modal="true" aria-labelledby="authTitle">
   <div class="auth-card">
     <aside class="auth-art" aria-hidden="true">
-      <div class="auth-heart">♥</div>
+      <div class="auth-heart">+</div>
       <div class="auth-art-copy">
         <span>Bir dona imkoniyat</span>
         <p>Bir qaroringiz, uch hayotga umid.</p>
