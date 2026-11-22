@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://azizxolmurodov44-afk.github.io/hayot-qon-donorligi/sitemap.xml
